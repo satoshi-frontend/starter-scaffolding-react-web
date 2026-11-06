@@ -1,4 +1,3 @@
-
 name: PR CI & Auto Pull Request
 
 on:
@@ -8,116 +7,191 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  actions: read
 
-# Suprime únicamente la advertencia DEP0040 de Node.js.
-env:
-  NODE_OPTIONS: --disable-warning=DEP0040
+concurrency:
+  group: auto-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
-  ci:
-    name: CI Validation
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          package-manager-cache: false
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Commitlint
-        run: npx commitlint --from="origin/${{ github.base_ref }}" --to=HEAD
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Tests
-        run: npm test -- --ci
-
-      - name: Security audit
-        run: npm audit --audit-level=high
-
   update-pr:
     name: Update Pull Request
-    needs: ci
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Collect pull request metadata
-        id: metadata
-        env:
-          BASE_REF: ${{ github.base_ref }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          git fetch origin "$BASE_REF"
-
-          COMMITS="$(git log "origin/$BASE_REF..HEAD" --pretty=format:'- %s')"
-          FIRST_COMMIT="$(git log "origin/$BASE_REF..HEAD" --pretty=format:'%s' | tail -n 1)"
-          FILES="$(git diff --name-only "origin/$BASE_REF...HEAD")"
-          TYPES="$(git log "origin/$BASE_REF..HEAD" --pretty=format:'%s' \
-            | sed -nE 's/^([a-zA-Z]+)(\([^)]*\))?!?:.*/\1/p' \
-            | sort -u \
-            | paste -sd ', ' -)"
-
-          {
-            echo "commits<<EOF"
-            printf '%s\n' "${COMMITS:-- Sin commits}"
-            echo "EOF"
-
-            echo "files<<EOF"
-            printf '%s\n' "${FILES:-- Sin cambios}"
-            echo "EOF"
-
-            echo "first_commit<<EOF"
-            printf '%s\n' "${FIRST_COMMIT:-Pull request update}"
-            echo "EOF"
-
-            echo "types<<EOF"
-            printf '%s\n' "${TYPES:-chore}"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-
       - name: Update PR title and description
         uses: actions/github-script@v7
-        env:
-          COMMITS: ${{ steps.metadata.outputs.commits }}
-          FILES: ${{ steps.metadata.outputs.files }}
-          FIRST_COMMIT: ${{ steps.metadata.outputs.first_commit }}
-          TYPES: ${{ steps.metadata.outputs.types }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const pr = context.payload.pull_request;
 
             if (!pr) {
-              throw new Error("Pull request context is unavailable.");
+              core.info("No hay un PR abierto asociado a este evento; se omite.");
+              return;
             }
 
-            const commits = process.env.COMMITS || "- Sin commits";
-            const files = process.env.FILES || "- Sin cambios";
-            const firstCommit = process.env.FIRST_COMMIT || pr.head.ref;
-            const types = process.env.TYPES || "chore";
+            const { data: prData } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+            });
 
-            const formattedFiles = files
-              .split("\n")
-              .filter((file) => file.length > 0)
-              .map((file) => `- \`${file}\``)
-              .join("\n") || "- Sin cambios";
+            // Metadatos via API (no depende de git checkout ni de la rama base).
+            const commitsData = await github.paginate(github.rest.pulls.listCommits, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+            const subjects = commitsData.map((c) => c.commit.message.split("\n")[0]);
+            const commits = subjects.map((s) => `- ${s}`).join("\n") || "- Sin commits";
+            const firstCommit = subjects[0] || prData.head.ref;
+            const types =
+              [...new Set(
+                subjects
+                  .map((s) => (s.match(/^([a-zA-Z]+)(\([^)]*\))?!?:.*/) || [])[1])
+                  .filter(Boolean),
+              )].join(", ") || "chore";
+
+            const filesData = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+            const formattedFiles =
+              filesData.map((f) => `- \`${f.filename}\``).join("\n") || "- Sin cambios";
+
+            // Resuelve el id numérico de un workflow buscando en la lista
+            // completa: la API da 404 si el filename no existe en la rama
+            // por defecto. Se acepta filename o nombre del workflow.
+            const workflowIdByName = {};
+            try {
+              const workflows = await github.paginate(github.rest.actions.listWorkflows, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                per_page: 100,
+              });
+              for (const wf of workflows) {
+                workflowIdByName[wf.path.split("/").pop()] = wf.id;
+                workflowIdByName[wf.name.toLowerCase()] = wf.id;
+              }
+            } catch (error) {
+              core.warning(`No se pudo listar workflows: ${error.message}`);
+            }
+
+            const findWorkflowId = (nameOrFile) =>
+              workflowIdByName[nameOrFile] ?? workflowIdByName[nameOrFile.replace(/\.ya?ml$/, "")];
+
+            // Devuelve la conclusión SOLO si el run del workflow ya terminó.
+            // Si está encolado, en progreso o no existe, devuelve null y la
+            // línea no se marca.
+            const completed = async (workflowNameOrFile, filters) => {
+              const id = findWorkflowId(workflowNameOrFile);
+              if (!id) return null;
+              try {
+                const { data } = await github.rest.actions.listWorkflowRuns({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: id,
+                  per_page: 10,
+                  ...filters,
+                });
+                const run = data.workflow_runs[0];
+                return run && run.status === "completed" ? run.conclusion : null;
+              } catch (error) {
+                core.warning(`No se pudo consultar ${workflowNameOrFile}: ${error.message}`);
+                return null;
+              }
+            };
+
+            const sha = prData.head.sha;
+
+            // Espera (polling) a que TODOS los checks CI del PR terminen.
+            // GitHub no dispara check_run para checks creados con
+            // GITHUB_TOKEN del mismo repo, así que se consulta cada 15 s
+            // (máx. 10 min). Devuelve el mapa label -> conclusion.
+            const CI_WORKFLOWS = [
+              ["Commitlint", "commitlint.yml"],
+              ["Lint", "lint.yml"],
+              ["Tests", "test.yml"],
+              ["Security", "security.yml"],
+            ];
+            const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+            const POLL_INTERVAL_MS = 15_000;
+            const POLL_TIMEOUT_MS = 10 * 60_000;
+
+            const results = {};
+            const deadline = Date.now() + POLL_TIMEOUT_MS;
+            while (Date.now() < deadline) {
+              for (const [label, file] of CI_WORKFLOWS) {
+                if (results[label]) continue;
+                const conclusion = await completed(file, { head_sha: sha });
+                if (conclusion) results[label] = conclusion;
+              }
+              if (CI_WORKFLOWS.every(([label]) => results[label])) break;
+              core.info(
+                `Checks pendientes: ${CI_WORKFLOWS.filter(([label]) => !results[label])
+                  .map(([, file]) => file)
+                  .join(", ")} — reintentando en 15 s...`,
+              );
+              await sleep(POLL_INTERVAL_MS);
+            }
+
+            const icon = (conclusion) =>
+              conclusion === "success" ? "✅" : "❌";
+
+            const line = (label, conclusion) =>
+              conclusion && conclusion !== "skipped"
+                ? `- ${icon(conclusion)} ${label} (\`${conclusion}\`)`
+                : null;
+
+            // Solo se listan los checks que terminaron; los que no corrieron
+            // o siguen pendientes no se marcan.
+            const checkLines = CI_WORKFLOWS.map(([label]) => line(label, results[label])).filter(
+              Boolean,
+            );
+
+            const checklist =
+              checkLines.length > 0
+                ? checkLines.join("\n")
+                : "_Los checks de CI no terminaron a tiempo; revisa la pestaña Actions._";
+
+            // Sección de despliegue: solo si ya existe un run completado.
+            const baseRef = prData.base.ref;
+            const pagesUrl =
+              "https://satoshi-frontend.github.io/starter-scaffolding-react-web/";
+            const deployLink =
+              baseRef === "main"
+                ? pagesUrl
+                : baseRef === "develop"
+                  ? `${pagesUrl}preview/`
+                  : null;
+
+            let deploySection = "";
+            if (deployLink) {
+              // Soporta tanto el esquema unificado (deploy.yml) como los
+              // workflows por rama (deploy-main.yml / deploy-develop.yml).
+              const candidates =
+                baseRef === "main"
+                  ? ["deploy-main.yml", "deploy.yml"]
+                  : ["deploy-develop.yml", "deploy.yml"];
+              let deployConclusion = null;
+              for (const candidate of candidates) {
+                deployConclusion = await completed(candidate, { branch: baseRef });
+                if (deployConclusion) break;
+              }
+              if (deployConclusion && deployConclusion !== "skipped") {
+                deploySection = [
+                  "",
+                  "## 🚀 Despliegue",
+                  deployConclusion === "success"
+                    ? `Se desplego correctamente la rama base \`${baseRef}\`: [${deployLink}](${deployLink})`
+                    : `Despliegue \`${deployConclusion}\` de la rama base \`${baseRef}\`: [${deployLink}](${deployLink})`,
+                ].join("\n");
+              }
+            }
 
             const body = [
               "## 🧾 Descripción",
@@ -133,10 +207,8 @@ jobs:
               `\`${types}\``,
               "",
               "## ☑️ Checklist CI",
-              "- [x] Commitlint",
-              "- [x] Lint",
-              "- [x] Tests",
-              "- [x] Security audit",
+              checklist,
+              deploySection,
               "",
               "_PR actualizado automáticamente por CI_ 🤖",
             ].join("\n");

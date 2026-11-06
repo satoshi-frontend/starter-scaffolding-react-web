@@ -1,0 +1,81 @@
+name: Build
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Compilación de producción
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Checkout library (Satoshi-librerias/satoshi-rc-ui, ref = rama destino)
+        uses: actions/checkout@v4
+        with:
+          repository: Satoshi-librerias/satoshi-rc-ui
+          ref: ${{ github.base_ref || github.ref_name }}
+          token: ${{ secrets.LIBRARY_ACCESS_TOKEN || github.token }}
+          path: lib
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build and install library
+        run: |
+          mkdir -p resource
+          cd lib
+          # El name del package.json varia por rama (@satoshi-rc-ui en develop,
+          # react-ui en main) y "@satoshi-rc-ui" no es un nombre npm valido
+          # (scope sin paquete). Se normaliza a "satoshi-rc-ui" antes de empaquetar.
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.name = 'satoshi-rc-ui';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+          "
+          npm install --legacy-peer-deps
+          npm run build:lib
+          npm pack --ignore-scripts --pack-destination ../resource
+          cd ..
+          # La version de la libreria puede cambiar por rama (main se promueve
+          # con cada release). Se alinea el package.json del scaffold con la
+          # version real del tarball generado para que npm la resuelva.
+          LIB_VERSION=$(node -p "require('./lib/package.json').version")
+          export LIB_VERSION
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.dependencies['satoshi-rc-ui'] = 'file:resource/satoshi-rc-ui-' + process.env.LIB_VERSION + '.tgz';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\\n');
+          "
+          echo "scaffold usa satoshi-rc-ui@${LIB_VERSION} (file:resource/satoshi-rc-ui-${LIB_VERSION}.tgz)"
+          ls -la resource/
+
+      - name: Install dependencies
+        run: npm install && npm install ./resource/satoshi-rc-ui-*.tgz
+
+      - name: Run build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: dist
+          retention-days: 7
+          if-no-files-found: error
