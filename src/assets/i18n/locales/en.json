@@ -186,6 +186,16 @@
       "of": "of"
     }
   },
+  "theme": {
+    "title": "Available themes",
+    "select": "Select theme",
+    "selected": "Selected theme",
+    "searchPlaceholder": "Search themes...",
+    "empty": "No themes found.",
+    "of": "of",
+    "results": "themes",
+    "close": "Close theme selector"
+  },
   "menu": {
     "open": "Open menu",
     "close": "Close menu"
@@ -210,7 +220,6 @@
       "contact": "Contact us"
     },
     "hero": {
-      "eyebrow": "Technology and software development",
       "title": "Technology to",
       "titleAccent": "move forward.",
       "description": "We design and build software solutions that help businesses grow and work better.",
@@ -221,13 +230,14 @@
     "carousel": {
       "label": "Featured projects",
       "roleDescription": "carousel",
-      "featured": "Featured project",
       "previous": "View previous project",
-      "next": "View next project",
-      "pagination": "Select featured project",
-      "goTo": "Go to project",
-      "pause": "Pause carousel",
-      "play": "Resume carousel"
+      "next": "View next project"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp"
     },
     "clients": {
       "label": "Technologies and platforms",
@@ -280,16 +290,13 @@
       "title": "Technology that works for you.",
       "intro": "We support every stage: understand the challenge, build the solution, and evolve with you.",
       "brand": {
-        "title": "Technology consulting",
-        "description": "We define architecture, strategy, and a technology roadmap aligned with your business."
+        "title": "Technology consulting"
       },
       "digital": {
-        "title": "Software development",
-        "description": "We build secure, scalable, easy-to-use web and mobile applications."
+        "title": "Software development"
       },
       "space": {
-        "title": "Data & artificial intelligence",
-        "description": "We integrate data and automation to improve processes and decision-making."
+        "title": "Data & artificial intelligence"
       },
       "discover": "Discover service"
     },

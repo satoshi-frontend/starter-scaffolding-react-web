@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 const root = process.cwd();
@@ -50,12 +50,28 @@ const spanishKeys = getLeafKeys(locales.es);
 const englishKeys = getLeafKeys(locales.en);
 const spanishOnly = spanishKeys.filter((key) => !englishKeys.includes(key));
 const englishOnly = englishKeys.filter((key) => !spanishKeys.includes(key));
-const appSource = readFileSync(
-  resolve(root, "src/app/presentation/App.tsx"),
-  "utf8",
-);
+const presentationDir = resolve(root, "src/app/presentation");
+
+function collectSourceFiles(dir) {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const entryPath = resolve(dir, entry.name);
+
+    if (entry.isDirectory()) return collectSourceFiles(entryPath);
+
+    return entry.name.endsWith(".ts") || entry.name.endsWith(".tsx")
+      ? [entryPath]
+      : [];
+  });
+}
+
 const appKeys = new Set(
-  appSource.match(/(?:portfolio|preferences)\.[A-Za-z0-9_.]+/g) ?? [],
+  collectSourceFiles(presentationDir)
+    .flatMap((filePath) =>
+      readFileSync(filePath, "utf8").match(
+        /(?:portfolio|preferences)\.[A-Za-z0-9_.]+/g,
+      ) ?? [],
+    )
+    .filter((key) => !key.endsWith(".")),
 );
 const dynamicPortfolioKeys = new Set();
 const dynamicKeyRules = [
@@ -64,28 +80,49 @@ const dynamicKeyRules = [
   ["FAQ_ITEMS", ["question", "answer"]],
 ];
 
+const presentationSources = collectSourceFiles(presentationDir).map(
+  (filePath) => readFileSync(filePath, "utf8"),
+);
+
 for (const [constantName, suffixes] of dynamicKeyRules) {
   const constantPattern = new RegExp(
     `const ${constantName} = \\[([\\s\\S]*?)\\] as const;`,
   );
-  const constantBlock = appSource.match(constantPattern)?.[1] ?? "";
-  const baseKeys = constantBlock.matchAll(/"(portfolio\.[A-Za-z0-9_.]+)"/g);
 
-  for (const [, baseKey] of baseKeys) {
-    for (const suffix of suffixes) {
-      dynamicPortfolioKeys.add(`${baseKey}.${suffix}`);
+  for (const source of presentationSources) {
+    const constantBlock = source.match(constantPattern)?.[1] ?? "";
+    const baseKeys = constantBlock.matchAll(/"(portfolio\.[A-Za-z0-9_.]+)"/g);
+
+    for (const [, baseKey] of baseKeys) {
+      for (const suffix of suffixes) {
+        dynamicPortfolioKeys.add(
+          suffix === "" ? baseKey : `${baseKey}.${suffix}`,
+        );
+      }
     }
   }
 }
 
-const servicesBlock =
-  appSource.match(/const SERVICES = \[([\s\S]*?)\] as const;/)?.[1] ?? "";
-const serviceTitles = servicesBlock.matchAll(
-  /title:\s*"(portfolio\.services\.[A-Za-z0-9_.]+\.title)"/g,
-);
+for (const source of presentationSources) {
+  const socialBlock =
+    source.match(/const SOCIAL_LINKS = \[([\s\S]*?)\] as const;/)?.[1] ?? "";
+  const socialNames = socialBlock.matchAll(/name:\s*"(\w+)"/g);
 
-for (const [, titleKey] of serviceTitles) {
-  dynamicPortfolioKeys.add(titleKey.replace(/\.title$/, ".description"));
+  for (const [, socialName] of socialNames) {
+    dynamicPortfolioKeys.add(`portfolio.social.${socialName}`);
+  }
+}
+
+for (const source of presentationSources) {
+  const servicesBlock =
+    source.match(/const SERVICES = \[([\s\S]*?)\] as const;/)?.[1] ?? "";
+  const serviceTitles = servicesBlock.matchAll(
+    /title:\s*"(portfolio\.services\.[A-Za-z0-9_.]+\.title)"/g,
+  );
+
+  for (const [, titleKey] of serviceTitles) {
+    dynamicPortfolioKeys.add(titleKey.replace(/\.title$/, ".description"));
+  }
 }
 
 const missingKeys = [...appKeys].filter(

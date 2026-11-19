@@ -67,6 +67,10 @@
         "./src/app/infrastructure/*"
       ],
 
+      "@portafolio": [
+        "./src/app/presentation/portafolio/index.ts"
+      ],
+
       "@presentation": [
         "./src/app/presentation/index.ts"
       ],
@@ -99,5 +103,8 @@
 
   "include": [
     "src"
+  ],
+  "exclude": [
+    "src/test"
   ]
 }

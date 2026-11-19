@@ -186,6 +186,16 @@
       "of": "de"
     }
   },
+  "theme": {
+    "title": "Temas disponibles",
+    "select": "Seleccionar tema",
+    "selected": "Tema seleccionado",
+    "searchPlaceholder": "Buscar temas...",
+    "empty": "No se encontraron temas.",
+    "of": "de",
+    "results": "temas",
+    "close": "Cerrar selector de temas"
+  },
   "menu": {
     "open": "Abrir menú",
     "close": "Cerrar menú"
@@ -210,7 +220,6 @@
       "contact": "Contáctanos"
     },
     "hero": {
-      "eyebrow": "Tecnología y desarrollo de software",
       "title": "Tecnología para",
       "titleAccent": "avanzar.",
       "description": "Diseñamos y desarrollamos soluciones de software para ayudar a las empresas a crecer y trabajar mejor.",
@@ -221,13 +230,14 @@
     "carousel": {
       "label": "Proyectos destacados",
       "roleDescription": "carrusel",
-      "featured": "Proyecto destacado",
       "previous": "Ver proyecto anterior",
-      "next": "Ver siguiente proyecto",
-      "pagination": "Seleccionar proyecto destacado",
-      "goTo": "Ir al proyecto",
-      "pause": "Pausar carrusel",
-      "play": "Reanudar carrusel"
+      "next": "Ver siguiente proyecto"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp"
     },
     "clients": {
       "label": "Tecnologías y plataformas",
@@ -280,16 +290,13 @@
       "title": "Tecnología que trabaja contigo.",
       "intro": "Acompañamos cada etapa: entendemos el reto, construimos la solución y evolucionamos contigo.",
       "brand": {
-        "title": "Consultoría tecnológica",
-        "description": "Definimos arquitectura, estrategia y una hoja de ruta tecnológica alineada al negocio."
+        "title": "Consultoría tecnológica"
       },
       "digital": {
-        "title": "Desarrollo de software",
-        "description": "Creamos aplicaciones web y móviles seguras, escalables y fáciles de usar."
+        "title": "Desarrollo de software"
       },
       "space": {
-        "title": "Datos e inteligencia artificial",
-        "description": "Integramos datos y automatización para optimizar procesos y decisiones."
+        "title": "Datos e inteligencia artificial"
       },
       "discover": "Descubrir servicio"
     },

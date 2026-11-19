@@ -27,7 +27,7 @@ export default defineConfig([
       parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
-        project: "./tsconfig.json",
+        project: ["./tsconfig.json", "./tsconfig.jest.json"],
         tsconfigRootDir: process.cwd(),
       },
       globals: {

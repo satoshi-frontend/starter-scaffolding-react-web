@@ -34,6 +34,11 @@ export default defineConfig({
         "src/app/infrastructure",
       ),
 
+      "@portafolio": path.resolve(
+        __dirname,
+        "src/app/presentation/portafolio",
+      ),
+
       "@presentation": path.resolve(
         __dirname,
         "src/app/presentation",

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { translations } from "./i18n/locales/translations";
-import { appThemes, DAISY_UI_THEMES } from "./styles/theme/theme";
+import { translations } from "@i18n/locales/translations";
+import { appThemes, DAISY_UI_THEMES } from "@assets/styles/theme/theme";
 
 describe("application language and theme settings", () => {
   const spanishKeys = flattenKeys(translations.es);

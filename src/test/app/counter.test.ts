@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { setupCounter } from "./counter";
+import { setupCounter } from "@/counter";
 
 describe("setupCounter", () => {
   let button: HTMLButtonElement;
