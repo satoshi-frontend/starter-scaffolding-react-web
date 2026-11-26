@@ -25,3 +25,6 @@ dist-ssr
 package-lock.json
 coverage
 resource
+
+# Ops lifecycle (regenerable por la skill ops-lifecycle)
+.ops/
