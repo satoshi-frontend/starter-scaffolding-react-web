@@ -61,6 +61,11 @@ kit, aplica las convenciones del rulebook del proyecto. Las comunes del kit:
 - Componentes y estilos: Tailwind CSS responsive (breakpoints `sm:`, `md:`,
   `lg:`), respetando la estructura de capas del proyecto (presentation/
   aplicacion/domain/infraestructura).
+- Ejecuta todos los comandos de terminal en Bash (Git Bash en Windows, Bash
+  en Linux); nunca CMD, PowerShell, scripts `.bat`/`.cmd` ni sintaxis
+  exclusiva de esas shells. Si un comando falla, diagnosticalo y resuelvelo
+  en Bash. Prioriza `npm` sobre ejecutables exclusivos de Windows como
+  `npm.cmd`.
 - Toda pieza nueva o modificada exige pruebas unitarias; registra su resultado
   como evidencia en los documentos de `.ops`.
 - La documentacion de codigo se genera con JSDoc (`@description`, `@param`,

@@ -1,11 +1,11 @@
-import {
+﻿import {
   Button,
   Card,
   Container,
   FormField,
   SectionHeading,
   Textarea,
-} from "@satoshi-rc-ui";
+} from "@satoshi/rc-ui";
 
 import { useContactForm, type SectionProps } from "@portafolio";
 
@@ -86,7 +86,7 @@ export function ContactSection(props: SectionProps): JSX.Element {
               </p>
               <Button type="submit" variant="primary">
                 {t("portfolio.contact.form.submit")}
-                <span aria-hidden="true">↗</span>
+                <span aria-hidden="true">â†—</span>
               </Button>
               {draftOpened && (
                 <p aria-live="polite" className="alert alert-success">

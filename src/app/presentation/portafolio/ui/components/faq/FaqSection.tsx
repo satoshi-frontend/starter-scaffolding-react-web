@@ -1,4 +1,4 @@
-import { Container, SectionHeading } from "@satoshi-rc-ui";
+﻿import { Container, SectionHeading } from "@satoshi/rc-ui";
 
 import { FAQ_ITEMS, type SectionProps } from "@portafolio";
 
@@ -47,7 +47,7 @@ export function FaqSection(props: SectionProps): JSX.Element {
         ))}
       </div>
       <a className="btn btn-primary self-start" href="#contact">
-        {t("portfolio.faq.cta")} <span aria-hidden="true">↗</span>
+        {t("portfolio.faq.cta")} <span aria-hidden="true">â†—</span>
       </a>
     </Container>
   );

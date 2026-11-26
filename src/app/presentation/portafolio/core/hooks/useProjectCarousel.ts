@@ -15,14 +15,29 @@ import {
 const MIN_PROJECTS_FOR_AUTOPLAY = 2;
 
 /**
- * @description Controla el carrusel de proyectos con autoplay y navegacion manual.
+ * @description Controla el carrusel con autoplay, navegacion manual y pausa al interactuar o con la pestana oculta.
  * @returns El estado y las acciones del carrusel de proyectos.
  * @author Steveen Cues
- * @version 1.0.0
+ * @version 1.1.0
  */
 export function useProjectCarousel(): ProjectCarouselResult {
   const [activeProject, setActiveProject] = useState(0);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [isDocumentVisible, setIsDocumentVisible] = useState(
+    (): boolean => typeof document === "undefined" || !document.hidden,
+  );
+
+  useEffect((): (() => void) => {
+    const handleVisibilityChange = (): void => {
+      setIsDocumentVisible(!document.hidden);
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return (): void => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia(
@@ -31,6 +46,7 @@ export function useProjectCarousel(): ProjectCarouselResult {
 
     if (
       isInteracting ||
+      !isDocumentVisible ||
       reducedMotion ||
       PROJECTS.length < MIN_PROJECTS_FOR_AUTOPLAY
     ) {
@@ -44,7 +60,7 @@ export function useProjectCarousel(): ProjectCarouselResult {
     return (): void => {
       window.clearInterval(intervalId);
     };
-  }, [isInteracting]);
+  }, [isDocumentVisible, isInteracting]);
 
   const changeProject = (direction: CarouselDirection): void => {
     setActiveProject((current) =>

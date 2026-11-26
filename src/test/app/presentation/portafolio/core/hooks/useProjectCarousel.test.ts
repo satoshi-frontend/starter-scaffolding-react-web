@@ -75,4 +75,24 @@ describe("useProjectCarousel", () => {
     expect(result.current.activeProject).toBe(0);
     jest.useRealTimers();
   });
+
+  it("pauses autoplay while the document is hidden", () => {
+    jest.useFakeTimers();
+    const visibilitySpy = jest
+      .spyOn(document, "hidden", "get")
+      .mockReturnValue(true);
+    const { result } = renderHook(() => useProjectCarousel());
+
+    act(() => {
+      document.dispatchEvent(new Event("visibilitychange"));
+    });
+    act(() => {
+      jest.advanceTimersByTime(12000);
+    });
+
+    expect(result.current.activeProject).toBe(0);
+
+    visibilitySpy.mockRestore();
+    jest.useRealTimers();
+  });
 });

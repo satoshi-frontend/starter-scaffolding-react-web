@@ -1,4 +1,4 @@
-import { Card, Container, SectionHeading } from "@satoshi-rc-ui";
+﻿import { Card, Container, SectionHeading } from "@satoshi/rc-ui";
 
 import {
   COUNTER_PADDING_WIDTH,

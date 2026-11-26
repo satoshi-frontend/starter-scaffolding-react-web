@@ -1,6 +1,6 @@
 # Project Guidelines — starter-scaffolding-react-web
 
-Scaffold de React + TypeScript + Vite 7 como vitrina de la librería `satoshi-rc-ui` (instalada localmente desde `resource/satoshi-rc-ui-1.0.0.tgz`).
+Scaffold de React + TypeScript + Vite 7 como vitrina de la librería `satoshi-rc-ui` (instalada localmente desde `resource/satoshi-rc-ui-1.1.1.tgz`).
 
 ## ⛔ Reglas estrictas de Git (NO NEGOCIABLES)
 
@@ -62,8 +62,8 @@ npm run ui:install:local   # reinstalar la librería desde el tgz de resource/
 
 ## Conventions
 
-- Commits: Conventional Commits (validado por commitlint + husky `commit-msg`; PR titles también validados). **El agente no ejecuta commit ni push** — ver la regla ⛔ arriba.
-- Pre-commit: Prettier + lint-staged.
+- **Terminal obligatoria: Bash** (Git Bash en Windows, Bash en Linux). Nunca CMD, PowerShell, scripts `.bat`/`.cmd` ni sintaxis exclusiva de esas shells; si un comando falla, resuélvelo en Bash. Prioriza `npm` sobre `npm.cmd`.
+- Commits: Conventional Commits (validado por commitlint + husky `commit-msg`; PR titles también validados). **El agente no ejecuta commit ni push** — ver la regla ⛔ arriba. Pre-commit: Prettier + lint-staged.
 - CI en `.github/workflows/`: workflow por concern (lint, test, build, commitlint, security, deploy, pr-lint, auto-pr, version-bump) en push/PR a `main`/`develop`. Deploy a GitHub Pages desde `main` y `develop`.
 - `coverage/` es artefacto generado; no editarlo a mano.
 - La librería `satoshi-rc-ui` vive en `Satoshi-librerias/satoshi-rc-ui` (rama `develop`). En CI se compila desde el checkout de la rama destino (`${{ github.base_ref || github.ref_name }}`) y la versión del scaffold se alinea con la versión real de la librería. El `resource/*.tgz` es solo para desarrollo local.

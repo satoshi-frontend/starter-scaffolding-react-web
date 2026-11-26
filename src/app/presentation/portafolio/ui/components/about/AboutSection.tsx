@@ -1,4 +1,4 @@
-import { Container, SectionHeading, Stat } from "@satoshi-rc-ui";
+﻿import { Container, SectionHeading, Stat } from "@satoshi/rc-ui";
 
 import type { SectionProps } from "@portafolio";
 import type { JSX } from "react";
@@ -28,6 +28,7 @@ export function AboutSection(props: SectionProps): JSX.Element {
           <img
             alt={t("portfolio.about.imageAlt")}
             className="aspect-[4/3] w-full object-cover"
+            decoding="async"
             loading="lazy"
             src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
           />
@@ -41,7 +42,7 @@ export function AboutSection(props: SectionProps): JSX.Element {
             title={t("portfolio.about.title")}
           />
           <a className="link link-primary" href="#contact">
-            {t("portfolio.about.cta")} ↗
+            {t("portfolio.about.cta")} â†—
           </a>
           <div className="stats stats-vertical mt-5 w-full shadow md:stats-horizontal">
             <Stat

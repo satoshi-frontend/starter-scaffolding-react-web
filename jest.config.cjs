@@ -11,8 +11,8 @@ module.exports = {
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
-    '^@satoshi-rc-ui$': '<rootDir>/node_modules/satoshi-rc-ui',
-    '^@satoshi-rc-ui/(.*)$': '<rootDir>/node_modules/satoshi-rc-ui/$1',
+    '^@satoshi/rc-ui$': '<rootDir>/node_modules/@satoshi/rc-ui',
+    '^@satoshi/rc-ui/(.*)$': '<rootDir>/node_modules/@satoshi/rc-ui/$1',
     // La libreria enlazada trae su propia copia de react; se deduplica como en vite.config.ts
     '^react$': '<rootDir>/node_modules/react',
     '^react-dom$': '<rootDir>/node_modules/react-dom',

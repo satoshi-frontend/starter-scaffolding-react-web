@@ -200,6 +200,13 @@
     "open": "Open menu",
     "close": "Close menu"
   },
+  "language": {
+    "select": "Select language",
+    "listLabel": "Available languages",
+    "searchPlaceholder": "Search language...",
+    "empty": "No languages found.",
+    "selected": "Selected language"
+  },
   "navigation": {
     "main": "Main navigation",
     "home": "Home",
@@ -290,13 +297,16 @@
       "title": "Technology that works for you.",
       "intro": "We support every stage: understand the challenge, build the solution, and evolve with you.",
       "brand": {
-        "title": "Technology consulting"
+        "title": "Technology consulting",
+        "description": "We define architecture, strategy, and a technology roadmap aligned with your business."
       },
       "digital": {
-        "title": "Software development"
+        "title": "Software development",
+        "description": "We build secure, scalable, easy-to-use web and mobile applications."
       },
       "space": {
-        "title": "Data & artificial intelligence"
+        "title": "Data & artificial intelligence",
+        "description": "We integrate data and automation to improve processes and decision-making."
       },
       "discover": "Discover service"
     },

@@ -33,7 +33,10 @@ shared `satoshi-rc-ui` components for reusable UI and themes.
    entries.
 8. Test all three configured themes (light, dark, and corporate) for actual
    activation and readable, consistent surfaces, text, controls, and overlays.
-9. Run targeted tests, `npm run lint:check`, and `npm run build`. Visual QA is
+9. Run targeted tests, `npm run lint:check`, and `npm run build`. Run every
+   shell command in Bash (Git Bash on Windows, Bash on Linux); never use
+   Windows CMD, PowerShell, `.bat`/`.cmd` scripts, or their exclusive syntax.
+   Visual QA is
    mandatory on mobile and desktop: check 320 and 390 CSS pixels for mobile,
    1024 and 1440 for desktop, and 768 for tablet, with no horizontal overflow.
    Exercise at least one complete user flow on mobile and desktop.
@@ -72,6 +75,23 @@ shared `satoshi-rc-ui` components for reusable UI and themes.
   contact section, and FAQ. Wrap carousel controls, allow long divider text to
   wrap, and use `min-w-0` on grid children where intrinsic text width can expand
   the layout.
+- Carousel autoplay must also pause when the document is hidden
+  (`visibilitychange`), not only on hover/focus/reduced-motion; otherwise the
+  interval keeps burning CPU in background tabs. Test it by mocking
+  `document.hidden` and dispatching the event.
+- Unsplash images need `decoding="async"` (and `fetchPriority="high"` only on
+  the hero LCP image); lazy-loaded grid images already have `loading="lazy"`
+  plus an `aspect-[4/3]` figure that reserves space and prevents CLS.
+- The library's `LanguageSelector` resolves its labels through the translation
+  context with `language.*` default keys (`select`, `listLabel`,
+  `searchPlaceholder`, `empty`, `selected`); the app locales must define them
+  or the trigger renders the raw key. The translation validator catches
+  missing keys only if some source references them, so add the keys together
+  with any component upgrade that introduces them.
+- After replacing the library tarball, force-reinstall
+  (`npm install ./resource/<tgz> --force`) and clear `node_modules/.vite`:
+  npm can keep the old extracted package and Vite's dep optimizer can serve a
+  stale pre-bundle, making verified library fixes invisible in the browser.
 
 ## Improvement Opportunities
 

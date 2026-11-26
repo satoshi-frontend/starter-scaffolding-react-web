@@ -1,4 +1,4 @@
-import { Card, Container, SectionHeading } from "@satoshi-rc-ui";
+﻿import { Card, Container, SectionHeading } from "@satoshi/rc-ui";
 
 import {
   PROJECTS,
@@ -55,6 +55,7 @@ export function ProjectsSection(props: ProjectsSectionProps): JSX.Element {
                 <img
                   alt={t(item.imageAlt)}
                   className="h-full w-full object-cover"
+                  decoding="async"
                   loading="lazy"
                   src={item.image}
                 />
@@ -78,7 +79,7 @@ export function ProjectsSection(props: ProjectsSectionProps): JSX.Element {
           {t("portfolio.work.footer")}
         </p>
         <a className="link link-primary" href="#contact">
-          {t("portfolio.work.cta")} ↗
+          {t("portfolio.work.cta")} â†—
         </a>
       </div>
     </Container>

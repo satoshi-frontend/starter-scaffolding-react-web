@@ -1,4 +1,4 @@
-import { Container } from "@satoshi-rc-ui";
+﻿import { Container } from "@satoshi/rc-ui";
 
 import type { SectionProps } from "@portafolio";
 import type { JSX } from "react";

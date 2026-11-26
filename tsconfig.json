@@ -39,11 +39,11 @@
         "./src/*"
       ],
 
-      "@satoshi-rc-ui": [
-        "./node_modules/satoshi-rc-ui/dist/index.d.ts"
+      "@satoshi/rc-ui": [
+        "./node_modules/@satoshi/rc-ui/dist/index.d.ts"
       ],
-      "@satoshi-rc-ui/*": [
-        "./node_modules/satoshi-rc-ui/dist/*"
+      "@satoshi/rc-ui/*": [
+        "./node_modules/@satoshi/rc-ui/dist/*"
       ],
 
       "@domain": [

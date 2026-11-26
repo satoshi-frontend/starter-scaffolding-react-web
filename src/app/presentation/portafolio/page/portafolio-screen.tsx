@@ -1,4 +1,4 @@
-import { CookieConsent, GuidedTour } from "@satoshi-rc-ui";
+﻿import { CookieConsent, GuidedTour } from "@satoshi/rc-ui";
 import { useMemo, useState } from "react";
 
 import {

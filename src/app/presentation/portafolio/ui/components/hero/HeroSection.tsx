@@ -1,4 +1,4 @@
-import { Button, Container } from "@satoshi-rc-ui";
+﻿import { Button, Container } from "@satoshi/rc-ui";
 
 import {
   COUNTER_PADDING_WIDTH,
@@ -33,6 +33,8 @@ export function HeroSection(props: HeroSectionProps): JSX.Element {
       <img
         alt={t(project.imageAlt)}
         className="absolute inset-0 -z-10 h-full w-full object-cover"
+        decoding="async"
+        fetchPriority="high"
         key={project.image}
         src={project.image}
       />
@@ -68,7 +70,7 @@ export function HeroSection(props: HeroSectionProps): JSX.Element {
             >
               <Button onClick={() => scrollToSection("work")} variant="primary">
                 {t("portfolio.hero.primaryCta")}{" "}
-                <span aria-hidden="true">↗</span>
+                <span aria-hidden="true">â†—</span>
               </Button>
               <a className="link link-hover" href="#about">
                 {t("portfolio.hero.secondaryCta")}
@@ -122,7 +124,7 @@ export function HeroSection(props: HeroSectionProps): JSX.Element {
                 onClick={() => onChange("previous")}
                 type="button"
               >
-                <span aria-hidden="true">↑</span>
+                <span aria-hidden="true">â†‘</span>
               </button>
               <span className="text-xs tabular-nums text-secondary-content/70">
                 {project.number} /{" "}
@@ -134,7 +136,7 @@ export function HeroSection(props: HeroSectionProps): JSX.Element {
                 onClick={() => onChange("next")}
                 type="button"
               >
-                <span aria-hidden="true">↓</span>
+                <span aria-hidden="true">â†“</span>
               </button>
             </div>
           </div>

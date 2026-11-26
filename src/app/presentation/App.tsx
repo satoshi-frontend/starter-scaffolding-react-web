@@ -1,4 +1,4 @@
-import { useLanguage } from "@satoshi-rc-ui";
+﻿import { useLanguage } from "@satoshi/rc-ui";
 
 import { PortafolioScreen } from "./portafolio";
 

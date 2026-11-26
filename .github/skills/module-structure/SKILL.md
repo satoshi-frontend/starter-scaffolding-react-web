@@ -78,3 +78,7 @@ src/test/
 10. **Quality gates**: `npm run type-check`, `npm run lint:check`,
     `npm test` and `npm run build` must pass; run
     `npm run validate:translations` after touching locale keys.
+11. **Bash only for shell commands** (Git Bash on Windows, Bash on Linux):
+    never Windows CMD, PowerShell, `.bat`/`.cmd` scripts, or their exclusive
+    syntax; if a command fails, diagnose and fix it in Bash. Prefer `npm`
+    over Windows-only executables such as `npm.cmd`.

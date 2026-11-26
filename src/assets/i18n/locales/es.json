@@ -200,6 +200,13 @@
     "open": "Abrir menú",
     "close": "Cerrar menú"
   },
+  "language": {
+    "select": "Seleccionar idioma",
+    "listLabel": "Idiomas disponibles",
+    "searchPlaceholder": "Buscar idioma...",
+    "empty": "No se encontraron idiomas.",
+    "selected": "Idioma seleccionado"
+  },
   "navigation": {
     "main": "Navegación principal",
     "home": "Inicio",
@@ -290,13 +297,16 @@
       "title": "Tecnología que trabaja contigo.",
       "intro": "Acompañamos cada etapa: entendemos el reto, construimos la solución y evolucionamos contigo.",
       "brand": {
-        "title": "Consultoría tecnológica"
+        "title": "Consultoría tecnológica",
+        "description": "Definimos arquitectura, estrategia y una hoja de ruta tecnológica alineada al negocio."
       },
       "digital": {
-        "title": "Desarrollo de software"
+        "title": "Desarrollo de software",
+        "description": "Creamos aplicaciones web y móviles seguras, escalables y fáciles de usar."
       },
       "space": {
-        "title": "Datos e inteligencia artificial"
+        "title": "Datos e inteligencia artificial",
+        "description": "Integramos datos y automatización para optimizar procesos y decisiones."
       },
       "discover": "Descubrir servicio"
     },

@@ -13,6 +13,9 @@ applyTo: ".github/specs/**/*.md"
 - Keep all visible portfolio copy in the Spanish and English JSON catalogs.
   Avoid raw translation keys and preserve the shared UI kit as the source of
   reusable component styling.
+- Use Bash for all terminal commands (Git Bash on Windows, Bash on Linux).
+  Never use Windows CMD, PowerShell, `.bat`/`.cmd` scripts, or their
+  exclusive syntax; if a command fails, diagnose and fix it in Bash.
 - Translation QA is strict: compare all Spanish and English leaf keys, check
   every static app translation-key reference against both catalogs, and remove
   invalid key references rather than shipping missing labels. Remove orphaned

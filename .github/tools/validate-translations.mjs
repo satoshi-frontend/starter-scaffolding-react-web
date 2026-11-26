@@ -115,7 +115,7 @@ for (const source of presentationSources) {
 
 for (const source of presentationSources) {
   const servicesBlock =
-    source.match(/const SERVICES = \[([\s\S]*?)\] as const;/)?.[1] ?? "";
+    source.match(/const SERVICES[^=]*=\s*\[([\s\S]*?)\] as const;/)?.[1] ?? "";
   const serviceTitles = servicesBlock.matchAll(
     /title:\s*"(portfolio\.services\.[A-Za-z0-9_.]+\.title)"/g,
   );

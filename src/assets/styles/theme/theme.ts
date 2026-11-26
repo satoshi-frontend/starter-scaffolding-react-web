@@ -1,11 +1,11 @@
-import { darkTheme } from "./dark.theme";
+﻿import { darkTheme } from "./dark.theme";
 import { lightTheme } from "./light.theme";
 
 import type {
   AppTheme,
   CustomThemeDefinition,
   ThemeName,
-} from "@satoshi-rc-ui";
+} from "@satoshi/rc-ui";
 
 /**
  * @description Define el unico tema nativo de DaisyUI habilitado.

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 
 /**
  * @description Traduccion de prueba que devuelve la clave tal cual.
@@ -10,7 +10,7 @@ import type { ReactNode } from "react";
 export const mockT = (key: string): string => key;
 
 /**
- * @description Mock del modulo satoshi-rc-ui para pruebas de pantalla.
+ * @description Mock del modulo @satoshi/rc-ui para pruebas de pantalla.
  * @author Steveen Cues
  * @version 1.0.0
  */

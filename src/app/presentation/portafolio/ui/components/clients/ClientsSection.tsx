@@ -1,4 +1,4 @@
-import { Container } from "@satoshi-rc-ui";
+﻿import { Container } from "@satoshi/rc-ui";
 
 import { CLIENT_BRANDS, type SectionProps } from "@portafolio";
 

@@ -1,8 +1,8 @@
-import type { CustomThemeDefinition } from "@satoshi-rc-ui";
+﻿import type { CustomThemeDefinition } from "@satoshi/rc-ui";
 
 /**
  * @file magenta.theme
- * @description Tema magenta profesional orientado a una identidad creativa y tecnológica.
+ * @description Tema magenta profesional orientado a una identidad creativa y tecnolÃ³gica.
  *
  * @author Steveen Cues
  * @version 2.0.0

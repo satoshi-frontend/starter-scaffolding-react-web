@@ -1,4 +1,4 @@
-import { Header, HeaderSpacer } from "@satoshi-rc-ui";
+﻿import { Header, HeaderSpacer } from "@satoshi/rc-ui";
 
 import type { SectionProps } from "@portafolio";
 import type { JSX } from "react";
@@ -43,7 +43,7 @@ export function SiteHeader(props: SectionProps): JSX.Element {
         additionalActions={
           <a className="btn btn-primary btn-sm" href="#contact">
             {t("portfolio.navigation.contact")}{" "}
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">â†—</span>
           </a>
         }
       />

@@ -1,4 +1,4 @@
-import { Card, Container, SectionHeading } from "@satoshi-rc-ui";
+﻿import { Card, Container, SectionHeading } from "@satoshi/rc-ui";
 
 import { SERVICES, type SectionProps } from "@portafolio";
 
@@ -59,7 +59,7 @@ export function ServicesSection(props: SectionProps): JSX.Element {
                   className="link link-primary mt-3 self-start"
                   href="#contact"
                 >
-                  {t("portfolio.services.discover")} ↗
+                  {t("portfolio.services.discover")} â†—
                 </a>
               </div>
             </Card>
