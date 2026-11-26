@@ -1,4 +1,4 @@
-import type { CustomThemeDefinition } from "@satoshi-rc-ui";
+﻿import type { CustomThemeDefinition } from "@satoshi/rc-ui";
 
 /**
  * @file semi-dark.theme

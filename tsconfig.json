@@ -39,11 +39,11 @@
         "./src/*"
       ],
 
-      "@satoshi-rc-ui": [
-        "./node_modules/satoshi-rc-ui/dist/index.d.ts"
+      "@satoshi/rc-ui": [
+        "./node_modules/@satoshi/rc-ui/dist/index.d.ts"
       ],
-      "@satoshi-rc-ui/*": [
-        "./node_modules/satoshi-rc-ui/dist/*"
+      "@satoshi/rc-ui/*": [
+        "./node_modules/@satoshi/rc-ui/dist/*"
       ],
 
       "@domain": [
@@ -65,6 +65,10 @@
       ],
       "@infrastructure/*": [
         "./src/app/infrastructure/*"
+      ],
+
+      "@portafolio": [
+        "./src/app/presentation/portafolio/index.ts"
       ],
 
       "@presentation": [
@@ -99,5 +103,8 @@
 
   "include": [
     "src"
+  ],
+  "exclude": [
+    "src/test"
   ]
 }

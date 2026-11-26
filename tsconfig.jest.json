@@ -3,8 +3,17 @@
   "compilerOptions": {
     "verbatimModuleSyntax": false,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "module": "CommonJS",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "types": [
+      "vite/client",
+      "react",
+      "react-dom",
+      "jest",
+      "node"
+    ]
   },
-  "include": ["src", "src/**/*.test.ts", "src/**/*.test.tsx"]
+  "include": ["src"],
+  "exclude": []
 }

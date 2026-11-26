@@ -11,6 +11,13 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   // =======================
+  // Ignorar pruebas y utilidades de test
+  // =======================
+  {
+    ignores: ["src/test/**"],
+  },
+
+  // =======================
   // Base JS
   // =======================
   js.configs.recommended,
@@ -20,14 +27,13 @@ export default defineConfig([
   // =======================
   {
     files: ["**/*.{ts,tsx}"],
-     ignores: ["**/*.test.ts", "**/*.test.tsx"],
 
     languageOptions: {
       parser: tsParser,
       parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
-        project: "./tsconfig.json",
+        project: ["./tsconfig.json", "./tsconfig.jest.json"],
         tsconfigRootDir: process.cwd(),
       },
       globals: {
@@ -184,7 +190,6 @@ export default defineConfig([
   },
   {
     files: ["**/*.{ts,tsx}"],
-    ignores: ["**/*.test.ts", "**/*.test.tsx"],
     rules: {
       /* Documentacion sin caracteres especiales: la descripcion solo puede
        * contener letras (incluye acentos espanoles), numeros, espacios y

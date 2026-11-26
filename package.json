@@ -12,15 +12,17 @@
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,css,scss,md}'",
     "type-check": "tsc --noEmit",
     "validate:kit": "node .github/tools/validate-kit.mjs",
+    "validate:translations": "node .github/tools/validate-translations.mjs",
+    "pretest": "npm run validate:translations",
     "prepare": "husky install",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "ui:install:local": "npm install ./resource/satoshi-rc-ui-1.0.0.tgz",
-    "ui:uninstall": "npm uninstall satoshi-rc-ui",
-    "ui:install:published": "npm install satoshi-rc-ui@latest",
-    "ui:link:dev": "npm link satoshi-rc-ui",
-    "ui:unlink:dev": "npm unlink satoshi-rc-ui && npm install ./resource/satoshi-rc-ui-1.0.0.tgz"
+    "ui:install:local": "npm install ./resource/satoshi-rc-ui-1.1.1.tgz",
+    "ui:uninstall": "npm uninstall @satoshi/rc-ui",
+    "ui:install:published": "npm install @satoshi/rc-ui@latest",
+    "ui:link:dev": "npm link @satoshi/rc-ui",
+    "ui:unlink:dev": "npm unlink @satoshi/rc-ui && npm install ./resource/satoshi-rc-ui-1.1.1.tgz"
   },
   "overrides": {
     "@istanbuljs/load-nyc-config": {
@@ -57,7 +59,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
+      "eslint --fix --no-warn-ignored",
       "prettier --write"
     ]
   },
@@ -65,7 +67,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "i18next": "^25.8.13",
     "react-i18next": "^16.5.4",
-    "satoshi-rc-ui": "file:resource/satoshi-rc-ui-1.0.0.tgz",
+    "@satoshi/rc-ui": "file:resource/satoshi-rc-ui-1.1.1.tgz",
     "tailwindcss": "^4.2.1"
   },
   "allowScripts": {

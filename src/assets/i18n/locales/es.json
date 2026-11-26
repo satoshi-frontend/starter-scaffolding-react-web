@@ -2,11 +2,11 @@
   "themes": {
     "light": {
       "name": "Claro",
-      "description": "Un tema claro con superficies limpias y acentos violetas."
+      "description": "Tema claro con fondo blanco, texto oscuro y acentos Satoshi."
     },
     "dark": {
       "name": "Oscuro",
-      "description": "Un tema oscuro con acentos violetas y superficies profundas."
+      "description": "Tema oscuro con fondo negro y acentos Satoshi."
     },
     "magenta": {
       "name": "Magenta",
@@ -143,6 +143,7 @@
     "appearance": {
       "theme": {
         "title": "Temas disponibles",
+        "select": "Seleccionar tema",
         "selected": "Tema seleccionado",
         "search": "Buscar temas...",
         "empty": "No se encontraron temas.",
@@ -177,7 +178,7 @@
     },
     "language": {
       "title": "Selector de idioma",
-      "description": "Selecciona español, inglés o francés para traducir la página."
+      "description": "Selecciona español o inglés para traducir la página."
     }
   },
   "common": {
@@ -185,9 +186,26 @@
       "of": "de"
     }
   },
+  "theme": {
+    "title": "Temas disponibles",
+    "select": "Seleccionar tema",
+    "selected": "Tema seleccionado",
+    "searchPlaceholder": "Buscar temas...",
+    "empty": "No se encontraron temas.",
+    "of": "de",
+    "results": "temas",
+    "close": "Cerrar selector de temas"
+  },
   "menu": {
     "open": "Abrir menú",
     "close": "Cerrar menú"
+  },
+  "language": {
+    "select": "Seleccionar idioma",
+    "listLabel": "Idiomas disponibles",
+    "searchPlaceholder": "Buscar idioma...",
+    "empty": "No se encontraron idiomas.",
+    "selected": "Idioma seleccionado"
   },
   "navigation": {
     "main": "Navegación principal",
@@ -198,6 +216,240 @@
     "about": "Sobre mí",
     "consultation": "AGENDAR CONSULTA",
     "contact": "CONTACTO"
+  },
+  "portfolio": {
+    "brand": "Satoshi Software Solutions",
+    "navigation": {
+      "work": "Proyectos",
+      "services": "Servicios",
+      "faq": "Preguntas frecuentes",
+      "about": "Empresa",
+      "contact": "Contáctanos"
+    },
+    "hero": {
+      "title": "Tecnología para",
+      "titleAccent": "avanzar.",
+      "description": "Diseñamos y desarrollamos soluciones de software para ayudar a las empresas a crecer y trabajar mejor.",
+      "primaryCta": "Ver proyectos",
+      "secondaryCta": "Conoce Satoshi",
+      "note": "Estrategia, tecnología y acompañamiento de principio a fin."
+    },
+    "carousel": {
+      "label": "Proyectos destacados",
+      "roleDescription": "carrusel",
+      "previous": "Ver proyecto anterior",
+      "next": "Ver siguiente proyecto"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp"
+    },
+    "clients": {
+      "label": "Tecnologías y plataformas",
+      "title": "Tecnología para cada reto"
+    },
+    "work": {
+      "kicker": "Una selección de nuestro trabajo",
+      "title": "Soluciones que impulsan.",
+      "intro": "Desarrollamos productos digitales que conectan las necesidades del negocio con experiencias fáciles de usar.",
+      "openProject": "Ver proyecto",
+      "footer": "Software útil, escalable y pensado para resolver problemas reales.",
+      "cta": "Conversemos sobre tu proyecto"
+    },
+    "projects": {
+      "items": {
+        "luma": {
+          "title": "Satoshi Cloud",
+          "category": "Nube · Plataforma",
+          "description": "Una plataforma centralizada para simplificar procesos de negocio.",
+          "imageAlt": "Panel de analítica digital con gráficos y métricas"
+        },
+        "casa": {
+          "title": "Satoshi Analytics",
+          "category": "Datos · Inteligencia de negocio",
+          "description": "Herramientas de analítica para convertir datos en decisiones.",
+          "imageAlt": "Panel de análisis con visualización de datos empresariales"
+        },
+        "verde": {
+          "title": "Satoshi Connect",
+          "category": "Desarrollo · Integraciones",
+          "description": "Integraciones digitales que conectan equipos y sistemas.",
+          "imageAlt": "Diseño de producto digital e identidad visual"
+        },
+        "pulse": {
+          "title": "Satoshi Commerce",
+          "category": "Comercio · Plataforma digital",
+          "description": "Una experiencia de compra conectada con la operación del negocio.",
+          "imageAlt": "Experiencia digital de comercio en línea"
+        },
+        "nova": {
+          "title": "Satoshi Mobile",
+          "category": "Móvil · Producto digital",
+          "description": "Una aplicación móvil diseñada para acercar servicios a cada cliente.",
+          "imageAlt": "Diseño de una aplicación móvil"
+        }
+      }
+    },
+    "services": {
+      "kicker": "Lo que hacemos",
+      "title": "Tecnología que trabaja contigo.",
+      "intro": "Acompañamos cada etapa: entendemos el reto, construimos la solución y evolucionamos contigo.",
+      "brand": {
+        "title": "Consultoría tecnológica",
+        "description": "Definimos arquitectura, estrategia y una hoja de ruta tecnológica alineada al negocio."
+      },
+      "digital": {
+        "title": "Desarrollo de software",
+        "description": "Creamos aplicaciones web y móviles seguras, escalables y fáciles de usar."
+      },
+      "space": {
+        "title": "Datos e inteligencia artificial",
+        "description": "Integramos datos y automatización para optimizar procesos y decisiones."
+      },
+      "discover": "Descubrir servicio"
+    },
+    "process": {
+      "kicker": "Cómo trabajamos",
+      "title": "De la idea al siguiente paso.",
+      "description": "Un proceso claro, colaborativo y enfocado en resultados útiles para tu negocio.",
+      "steps": {
+        "discover": {
+          "title": "Entendemos el reto",
+          "description": "Alineamos objetivos, usuarios y necesidades antes de decidir qué construir."
+        },
+        "design": {
+          "title": "Diseñamos la solución",
+          "description": "Definimos una experiencia y arquitectura que respondan al contexto real."
+        },
+        "build": {
+          "title": "Construimos contigo",
+          "description": "Desarrollamos, probamos y compartimos avances de forma continua."
+        },
+        "evolve": {
+          "title": "Medimos y evolucionamos",
+          "description": "Lanzamos con confianza y mejoramos con base en el uso y los resultados."
+        }
+      }
+    },
+    "value": {
+      "kicker": "Una alianza tecnológica",
+      "title": "Más que entregar código.",
+      "description": "Un equipo cercano para convertir tus prioridades en productos digitales que puedas mantener y hacer crecer.",
+      "points": {
+        "partnership": {
+          "title": "Decisiones contigo",
+          "description": "Trabajamos en colaboración y explicamos las alternativas técnicas para que cada decisión tenga sentido para tu negocio."
+        },
+        "practical": {
+          "title": "Soluciones enfocadas",
+          "description": "Priorizamos lo que resuelve el reto de hoy, con una base preparada para evolucionar."
+        },
+        "scale": {
+          "title": "Acompañamiento continuo",
+          "description": "Compartimos avances, validamos resultados y te ayudamos a planear los próximos pasos."
+        }
+      }
+    },
+    "faq": {
+      "kicker": "Preguntas frecuentes",
+      "title": "Empecemos con claridad.",
+      "description": "Algunas respuestas para saber qué esperar antes de conversar.",
+      "cta": "Hablemos de tu proyecto",
+      "items": {
+        "scope": {
+          "question": "¿Qué tipo de proyectos puede desarrollar Satoshi?",
+          "answer": "Acompañamos iniciativas de consultoría, desarrollo web y móvil, integraciones, datos y automatización. Definimos el alcance contigo según tus objetivos."
+        },
+        "timeline": {
+          "question": "¿Cuánto tiempo toma un proyecto?",
+          "answer": "Depende del alcance y de las necesidades del producto. Primero aclaramos prioridades y entregables para proponer etapas y tiempos realistas."
+        },
+        "collaboration": {
+          "question": "¿Cómo empezamos a trabajar juntos?",
+          "answer": "Cuéntanos el reto mediante el formulario. Revisaremos el contexto y acordaremos una conversación inicial para explorar opciones."
+        }
+      }
+    },
+    "about": {
+      "imageAlt": "Equipo colaborando en un espacio de trabajo moderno",
+      "kicker": "Tecnología con propósito",
+      "title": "Un equipo para construir lo que sigue.",
+      "description": "En Satoshi unimos experiencia técnica y conocimiento del negocio para convertir desafíos en soluciones de software confiables.",
+      "cta": "Descubre nuestras soluciones",
+      "stats": {
+        "years": "Estrategia",
+        "projects": "Desarrollo",
+        "awards": "Evolución"
+      }
+    },
+    "contact": {
+      "badge": "¿Tienes un reto tecnológico?",
+      "title": "Construyamos la solución.",
+      "description": "Cuéntanos qué quieres lograr. Revisaremos tu idea y prepararemos el siguiente paso juntos.",
+      "responseTime": "Conversemos sobre tu proyecto",
+      "emailNote": "Al enviar, se abrirá un borrador en tu aplicación de correo para que completes el destinatario y confirmes el envío.",
+      "form": {
+        "name": "Nombre",
+        "email": "Correo electrónico",
+        "message": "Cuéntanos sobre tu proyecto",
+        "subject": "Consulta desde el portafolio de Satoshi",
+        "sendNote": "El mensaje no se envía automáticamente; se prepara en tu aplicación de correo.",
+        "submit": "Preparar mensaje",
+        "draftOpened": "Borrador preparado. Completa el destinatario y envía el mensaje desde tu correo."
+      }
+    },
+    "tour": {
+      "openGuide": "Abrir guía de la página",
+      "stepOf": "Paso {current} de {total}",
+      "back": "Anterior",
+      "next": "Siguiente",
+      "skip": "Omitir guía",
+      "finish": "Finalizar",
+      "steps": {
+        "intro": {
+          "title": "Bienvenido a Satoshi",
+          "description": "Descubre cómo ayudamos a convertir retos de negocio en soluciones digitales."
+        },
+        "work": {
+          "title": "Proyectos destacados",
+          "description": "Explora ejemplos de productos y soluciones que podemos crear contigo."
+        },
+        "services": {
+          "title": "Servicios",
+          "description": "Conoce las áreas en las que podemos acompañar a tu equipo."
+        },
+        "process": {
+          "title": "Nuestro proceso",
+          "description": "Así colaboramos desde la primera conversación hasta la evolución del producto."
+        },
+        "contact": {
+          "title": "Hablemos de tu reto",
+          "description": "Cuéntanos qué necesitas y prepara un mensaje para iniciar la conversación."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacidad y almacenamiento",
+      "description": "Usamos almacenamiento local para recordar tus preferencias de idioma, tema, guía y privacidad. No activamos analítica ni publicidad.",
+      "consent": {
+        "title": "Tu privacidad importa",
+        "description": "Este sitio no usa cookies de analítica ni publicidad. La elección se guarda localmente para recordar tu preferencia.",
+        "details": "Las preferencias de idioma, tema y guía se guardan en el navegador. Las funciones necesarias no se pueden desactivar.",
+        "settings": "Privacidad",
+        "necessary": "Almacenamiento necesario: preferencias del sitio y estado de la guía.",
+        "optional": "Permitir cookies opcionales si se incorporan en el futuro.",
+        "acceptAll": "Permitir opcionales",
+        "necessaryOnly": "Solo necesarias",
+        "manage": "Configurar",
+        "save": "Guardar preferencias"
+      }
+    },
+    "footer": {
+      "rights": "Todos los derechos reservados.",
+      "backToTop": "Volver arriba"
+    }
   },
   "footer": {
     "description": "Soluciones digitales, desarrollo de software y tecnología enfocada en crear experiencias modernas y escalables.",

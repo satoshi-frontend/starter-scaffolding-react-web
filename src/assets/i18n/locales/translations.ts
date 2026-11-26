@@ -1,8 +1,7 @@
-import en from "./en.json";
+﻿import en from "./en.json";
 import es from "./es.json";
-import fr from "./fr.json";
 
-import type { TranslationCatalog } from "@satoshi-rc-ui";
+import type { TranslationCatalog } from "@satoshi/rc-ui";
 
 /**
  * @description Catalogo de traducciones identificado por idioma.
@@ -12,5 +11,4 @@ import type { TranslationCatalog } from "@satoshi-rc-ui";
 export const translations: TranslationCatalog = {
   es,
   en,
-  fr,
 };

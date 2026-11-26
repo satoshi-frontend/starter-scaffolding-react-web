@@ -2,11 +2,11 @@
   "themes": {
     "light": {
       "name": "Light",
-      "description": "A light theme with clean surfaces and violet accents."
+      "description": "Light theme with a white background, dark text, and Satoshi accents."
     },
     "dark": {
       "name": "Dark",
-      "description": "A dark theme with violet accents and deep surfaces."
+      "description": "Dark theme with a black background and Satoshi accents."
     },
     "magenta": {
       "name": "Magenta",
@@ -143,6 +143,7 @@
     "appearance": {
       "theme": {
         "title": "Available themes",
+        "select": "Select theme",
         "selected": "Selected theme",
         "search": "Search themes...",
         "empty": "No themes found.",
@@ -177,7 +178,7 @@
     },
     "language": {
       "title": "Language selector",
-      "description": "Select English, Spanish, or French to translate the page."
+      "description": "Select English or Spanish to translate the page."
     }
   },
   "common": {
@@ -185,9 +186,26 @@
       "of": "of"
     }
   },
+  "theme": {
+    "title": "Available themes",
+    "select": "Select theme",
+    "selected": "Selected theme",
+    "searchPlaceholder": "Search themes...",
+    "empty": "No themes found.",
+    "of": "of",
+    "results": "themes",
+    "close": "Close theme selector"
+  },
   "menu": {
     "open": "Open menu",
     "close": "Close menu"
+  },
+  "language": {
+    "select": "Select language",
+    "listLabel": "Available languages",
+    "searchPlaceholder": "Search language...",
+    "empty": "No languages found.",
+    "selected": "Selected language"
   },
   "navigation": {
     "main": "Main navigation",
@@ -198,6 +216,240 @@
     "about": "About Me",
     "consultation": "BOOK A CONSULTATION",
     "contact": "CONTACT"
+  },
+  "portfolio": {
+    "brand": "Satoshi Software Solutions",
+    "navigation": {
+      "work": "Work",
+      "services": "Services",
+      "faq": "FAQ",
+      "about": "Company",
+      "contact": "Contact us"
+    },
+    "hero": {
+      "title": "Technology to",
+      "titleAccent": "move forward.",
+      "description": "We design and build software solutions that help businesses grow and work better.",
+      "primaryCta": "Explore our work",
+      "secondaryCta": "Meet Satoshi",
+      "note": "Strategy, technology, and support from start to finish."
+    },
+    "carousel": {
+      "label": "Featured projects",
+      "roleDescription": "carousel",
+      "previous": "View previous project",
+      "next": "View next project"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp"
+    },
+    "clients": {
+      "label": "Technologies and platforms",
+      "title": "Technology for every challenge"
+    },
+    "work": {
+      "kicker": "A selection of our work",
+      "title": "Solutions that move you forward.",
+      "intro": "We build digital products that connect business needs with easy-to-use experiences.",
+      "openProject": "View project",
+      "footer": "Useful, scalable software built to solve real problems.",
+      "cta": "Let's talk about your project"
+    },
+    "projects": {
+      "items": {
+        "luma": {
+          "title": "Satoshi Cloud",
+          "category": "Cloud · Platform",
+          "description": "A centralized platform to simplify business processes.",
+          "imageAlt": "Digital analytics dashboard with charts and metrics"
+        },
+        "casa": {
+          "title": "Satoshi Analytics",
+          "category": "Data · Business intelligence",
+          "description": "Analytics tools that turn data into decisions.",
+          "imageAlt": "Analytics dashboard with business data visualization"
+        },
+        "verde": {
+          "title": "Satoshi Connect",
+          "category": "Development · Integrations",
+          "description": "Digital integrations that connect teams and systems.",
+          "imageAlt": "Digital product design and visual identity"
+        },
+        "pulse": {
+          "title": "Satoshi Commerce",
+          "category": "Commerce · Digital platform",
+          "description": "A connected shopping experience built around business operations.",
+          "imageAlt": "Online commerce digital experience"
+        },
+        "nova": {
+          "title": "Satoshi Mobile",
+          "category": "Mobile · Digital product",
+          "description": "A mobile application designed to bring services closer to every customer.",
+          "imageAlt": "Mobile application design"
+        }
+      }
+    },
+    "services": {
+      "kicker": "What we do",
+      "title": "Technology that works for you.",
+      "intro": "We support every stage: understand the challenge, build the solution, and evolve with you.",
+      "brand": {
+        "title": "Technology consulting",
+        "description": "We define architecture, strategy, and a technology roadmap aligned with your business."
+      },
+      "digital": {
+        "title": "Software development",
+        "description": "We build secure, scalable, easy-to-use web and mobile applications."
+      },
+      "space": {
+        "title": "Data & artificial intelligence",
+        "description": "We integrate data and automation to improve processes and decision-making."
+      },
+      "discover": "Discover service"
+    },
+    "process": {
+      "kicker": "How we work",
+      "title": "From idea to what comes next.",
+      "description": "A clear, collaborative process focused on outcomes that matter to your business.",
+      "steps": {
+        "discover": {
+          "title": "Understand the challenge",
+          "description": "We align goals, users, and needs before deciding what to build."
+        },
+        "design": {
+          "title": "Design the solution",
+          "description": "We define an experience and architecture grounded in your context."
+        },
+        "build": {
+          "title": "Build together",
+          "description": "We develop, test, and share progress continuously."
+        },
+        "evolve": {
+          "title": "Measure and evolve",
+          "description": "We launch with confidence and improve based on usage and outcomes."
+        }
+      }
+    },
+    "value": {
+      "kicker": "A technology partnership",
+      "title": "More than shipping code.",
+      "description": "A close-knit team to turn your priorities into digital products you can maintain and grow.",
+      "points": {
+        "partnership": {
+          "title": "Decisions made together",
+          "description": "We work collaboratively and explain technical options so each decision makes sense for your business."
+        },
+        "practical": {
+          "title": "Focused solutions",
+          "description": "We prioritize what solves today's challenge on a foundation ready to evolve."
+        },
+        "scale": {
+          "title": "Ongoing partnership",
+          "description": "We share progress, validate outcomes, and help plan what comes next."
+        }
+      }
+    },
+    "faq": {
+      "kicker": "Frequently asked questions",
+      "title": "Start with clarity.",
+      "description": "A few answers to help you know what to expect before we talk.",
+      "cta": "Let's discuss your project",
+      "items": {
+        "scope": {
+          "question": "What kinds of projects can Satoshi deliver?",
+          "answer": "We support consulting, web and mobile development, integrations, data, and automation initiatives. We define the scope with you around your goals."
+        },
+        "timeline": {
+          "question": "How long does a project take?",
+          "answer": "It depends on the scope and product needs. We first clarify priorities and deliverables to propose realistic phases and timelines."
+        },
+        "collaboration": {
+          "question": "How do we get started?",
+          "answer": "Tell us about the challenge using the form. We will review the context and arrange an initial conversation to explore options."
+        }
+      }
+    },
+    "about": {
+      "imageAlt": "Team collaborating in a modern workspace",
+      "kicker": "Technology with purpose",
+      "title": "A team to build what comes next.",
+      "description": "At Satoshi, we combine technical experience and business knowledge to turn challenges into reliable software solutions.",
+      "cta": "Explore our solutions",
+      "stats": {
+        "years": "Strategy",
+        "projects": "Development",
+        "awards": "Evolution"
+      }
+    },
+    "contact": {
+      "badge": "Facing a technology challenge?",
+      "title": "Let's build the solution.",
+      "description": "Tell us what you want to achieve. We’ll review your idea and plan the next step together.",
+      "responseTime": "Let's talk about your project",
+      "emailNote": "Submitting opens a draft in your email app so you can add a recipient and confirm sending.",
+      "form": {
+        "name": "Name",
+        "email": "Email address",
+        "message": "Tell us about your project",
+        "subject": "Inquiry from the Satoshi portfolio",
+        "sendNote": "Your message is not sent automatically; it is prepared in your email app.",
+        "submit": "Prepare message",
+        "draftOpened": "Draft prepared. Add a recipient and send the message from your email app."
+      }
+    },
+    "tour": {
+      "openGuide": "Open the page guide",
+      "stepOf": "Step {current} of {total}",
+      "back": "Back",
+      "next": "Next",
+      "skip": "Skip guide",
+      "finish": "Finish",
+      "steps": {
+        "intro": {
+          "title": "Welcome to Satoshi",
+          "description": "See how we help turn business challenges into digital solutions."
+        },
+        "work": {
+          "title": "Featured projects",
+          "description": "Explore examples of products and solutions we can create with you."
+        },
+        "services": {
+          "title": "Services",
+          "description": "Learn about the areas where we can support your team."
+        },
+        "process": {
+          "title": "Our process",
+          "description": "See how we work together from the first conversation through product evolution."
+        },
+        "contact": {
+          "title": "Let's discuss your challenge",
+          "description": "Tell us what you need and prepare a message to start the conversation."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacy and storage",
+      "description": "We use local storage to remember your language, theme, guide, and privacy preferences. We do not enable analytics or advertising.",
+      "consent": {
+        "title": "Your privacy matters",
+        "description": "This site does not use analytics or advertising cookies. Your choice is stored locally to remember your preference.",
+        "details": "Language, theme, and guide preferences are stored in your browser. Necessary functionality cannot be disabled.",
+        "settings": "Privacy",
+        "necessary": "Necessary storage: site preferences and guide status.",
+        "optional": "Allow optional cookies if they are introduced in the future.",
+        "acceptAll": "Allow optional",
+        "necessaryOnly": "Necessary only",
+        "manage": "Configure",
+        "save": "Save preferences"
+      }
+    },
+    "footer": {
+      "rights": "All rights reserved.",
+      "backToTop": "Back to top"
+    }
   },
   "footer": {
     "description": "Digital solutions, software development and technology focused on creating modern and scalable experiences.",

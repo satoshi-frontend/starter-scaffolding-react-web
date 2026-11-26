@@ -22,6 +22,7 @@ Definir el flujo estandarizado para implementar una feature de punta a punta sin
 | 2 | Estructura en capas | La UI en `presentation/`; la logica en `domain/`, `application/`, `infrastructure/`. Nunca saltarse capas. |
 | 3 | Pruebas unitarias | Todo lo agregado lleva su test junto al codigo; una feature sin tests esta incompleta. |
 | 4 | Documentacion JSDoc | Todo export publico con bloque JSDoc; sin caracteres especiales en la descripcion. |
+| 5 | Terminal Bash | Todos los comandos (npm, git, build, tests, lint) se ejecutan en Bash (Git Bash en Windows, Bash en Linux); nunca CMD, PowerShell, scripts `.bat`/`.cmd` ni sintaxis exclusiva de esas shells. |
 
 ## Flujo de trabajo
 

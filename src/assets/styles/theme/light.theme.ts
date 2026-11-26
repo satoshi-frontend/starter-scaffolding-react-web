@@ -1,4 +1,4 @@
-import type { CustomThemeDefinition } from "@satoshi-rc-ui";
+﻿import type { CustomThemeDefinition } from "@satoshi/rc-ui";
 
 /**
  * @description Define un tema claro personalizado con DaisyUI.
@@ -25,18 +25,18 @@ export const lightTheme: CustomThemeDefinition = {
   },
   daisyUI: {
     colorScheme: "light",
-    primary: "#7C3AED",
-    primaryContent: "#FFFFFF",
-    secondary: "#DB2777",
+    primary: "#797DFB",
+    primaryContent: "#000000",
+    secondary: "#000000",
     secondaryContent: "#FFFFFF",
-    accent: "#0891B2",
-    accentContent: "#FFFFFF",
-    neutral: "#E5E7EB",
-    neutralContent: "#1F2937",
+    accent: "#797DFB",
+    accentContent: "#000000",
+    neutral: "#F2F2F2",
+    neutralContent: "#000000",
     base100: "#FFFFFF",
-    base200: "#F9FAFB",
-    base300: "#E5E7EB",
-    baseContent: "#1F2937",
+    base200: "#FFFFFF",
+    base300: "#E8E8EF",
+    baseContent: "#000000",
     info: "#0284C7",
     infoContent: "#FFFFFF",
     success: "#15803D",

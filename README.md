@@ -1,6 +1,8 @@
-# starter-scaffolding-react-web
+# Satoshi Software Solutions — Portafolio
 
-Scaffold de **React + TypeScript + Vite 7** como vitrina de la librería [`satoshi-rc-ui`](https://github.com/Satoshi-librerias/satoshi-rc-ui), con arquitectura en capas, i18n (es/en/fr), theming DaisyUI, tests (Jest) y CI completo. La guía del directorio de automatización está en [`.github/README.md`](./.github/README.md).
+Landing page responsive para el portafolio de Satoshi Software Solutions, construida con **React + TypeScript + Vite 7** y los componentes y temas de [`satoshi-rc-ui`](https://github.com/Satoshi-librerias/satoshi-rc-ui). Incluye navegación responsive, carrusel automático de cinco proyectos (pausable y respetuoso con la preferencia de movimiento reducido), servicios, propuesta de valor, proceso de trabajo, preguntas frecuentes, presentación de la empresa y formulario de contacto, con contenido en español e inglés. En la primera visita, el consentimiento de privacidad se muestra abajo y debe guardarse antes de iniciar la guía; cada paso resalta la sección correspondiente y bloquea el resto de la página. Ambos controles se pueden volver a abrir. El formulario prepara un borrador en la aplicación de correo del visitante; no envía datos a un servicio externo. Las preferencias de privacidad se guardan en el navegador; actualmente el sitio no habilita cookies de analítica ni publicidad. El selector ofrece los temas claro, oscuro y corporativo de DaisyUI. La guía del directorio de automatización está en [`.github/README.md`](./.github/README.md).
+
+La tipografia inicial es Audiowide Regular con `font-display: swap`. Para usar otra fuente, cambia `--app-font-family` en `src/style.css` y actualiza el enlace de Google Fonts en `index.html` si la nueva fuente no se sirve localmente.
 
 ## Licencia
 
@@ -21,7 +23,7 @@ src/
 │   ├── domain/         # Reglas de negocio (reservada)
 │   └── infrastructure/ # Adaptadores externos (reservada)
 └── assets/
-    ├── i18n/           # Catálogos es/en/fr + translations.ts
+    ├── i18n/           # Catálogos es/en + translations.ts
     └── styles/theme/   # Temas CustomThemeDefinition de satoshi-rc-ui
 ```
 
@@ -29,7 +31,12 @@ Alias de TS/Vite: `@presentation`, `@domain`, `@application`, `@infrastructure`,
 
 ## La librería `satoshi-rc-ui`
 
-La app consume la librería desde un tarball local (`resource/satoshi-rc-ui-*.tgz`, declarado en `dependencies` como `file:...`). Los componentes UI (Button, Header, Container, ThemeSelector, providers) vienen de la librería; **no recrearlos**.
+La app consume la librería desde un tarball local (`resource/satoshi-rc-ui-*.tgz`, declarado en `dependencies` como `file:...`). El header, los botones, las tarjetas, los badges, los contenedores y los proveedores de idioma y tema se integran desde la librería; **no recrearlos**.
+
+Las secciones de contenido componen `Container` y `SectionHeading`; mantén el
+contenido en los catálogos bilingües y los estilos en la librería compartida. La
+especificación de adopción, su plan y tareas están en
+[`.github/specs/ui-kit/`](./.github/specs/ui-kit/).
 
 ### Instalar / reinstalar la librería
 
@@ -75,19 +82,19 @@ npm run ui:uninstall
 
 ## Comandos
 
-| Comando | Descripción |
-|---|---|
-| `npm run dev` | Servidor Vite en `:5173` (strictPort) |
-| `npm run build` | Type-check (`tsc --noEmit`) + build de producción a `dist/` |
-| `npm run preview` | Sirve `dist/` localmente |
-| `npm test` | Jest + ts-jest (jsdom); tests junto al código (`*.test.ts`) |
-| `npm run test:watch` | Tests en modo watch |
-| `npm run test:coverage` | Tests con cobertura (reporte en `coverage/`) |
-| `npm run lint` | ESLint con auto-fix |
-| `npm run lint:check` | ESLint sin modificar archivos (CI usa este) |
-| `npm run format` | Prettier sobre `src/` |
-| `npm run type-check` | Solo `tsc --noEmit` |
-| `npm run ui:*` | Gestión de la librería (ver sección anterior) |
+| Comando                 | Descripción                                                 |
+| ----------------------- | ----------------------------------------------------------- |
+| `npm run dev`           | Servidor Vite en `:5173` (strictPort)                       |
+| `npm run build`         | Type-check (`tsc --noEmit`) + build de producción a `dist/` |
+| `npm run preview`       | Sirve `dist/` localmente                                    |
+| `npm test`              | Jest + ts-jest (jsdom); tests junto al código (`*.test.ts`) |
+| `npm run test:watch`    | Tests en modo watch                                         |
+| `npm run test:coverage` | Tests con cobertura (reporte en `coverage/`)                |
+| `npm run lint`          | ESLint con auto-fix                                         |
+| `npm run lint:check`    | ESLint sin modificar archivos (CI usa este)                 |
+| `npm run format`        | Prettier sobre `src/`                                       |
+| `npm run type-check`    | Solo `tsc --noEmit`                                         |
+| `npm run ui:*`          | Gestión de la librería (ver sección anterior)               |
 
 ## Docker
 
@@ -119,11 +126,10 @@ docker run --rm -p 8080:80 starter-scaffold:prod          # servir el build
 
 ## i18n
 
-Toda cadena visible pasa por `t()` de `useLanguage()`. Si añades texto, agrégalo a los **tres** catálogos:
+Toda cadena visible pasa por `t()` de `useLanguage()`. Si añades texto, agrégalo a los dos catálogos:
 
 - `src/assets/i18n/locales/es.json`
 - `src/assets/i18n/locales/en.json`
-- `src/assets/i18n/locales/fr.json`
 
 ## Theming
 

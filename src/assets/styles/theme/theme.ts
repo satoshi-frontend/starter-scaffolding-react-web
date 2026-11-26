@@ -1,50 +1,19 @@
-import { darkTheme } from "./dark.theme";
+﻿import { darkTheme } from "./dark.theme";
 import { lightTheme } from "./light.theme";
-import { magentaTheme } from "./magenta.theme";
-import { semiDarkTheme } from "./semi-dark.theme";
 
 import type {
   AppTheme,
   CustomThemeDefinition,
   ThemeName,
-} from "@satoshi-rc-ui";
+} from "@satoshi/rc-ui";
 
 /**
- * @description Define los temas nativos habilitados de DaisyUI.
+ * @description Define el unico tema nativo de DaisyUI habilitado.
  * @author Steveen Cues
  * @version 1.1.0
  */
 export const DAISY_UI_THEMES = [
-  "cupcake",
-  "bumblebee",
-  "emerald",
   "corporate",
-  "synthwave",
-  "retro",
-  "cyberpunk",
-  "valentine",
-  "halloween",
-  "garden",
-  "forest",
-  "aqua",
-  "lofi",
-  "pastel",
-  "fantasy",
-  "wireframe",
-  "black",
-  "luxury",
-  "dracula",
-  "cmyk",
-  "autumn",
-  "business",
-  "acid",
-  "lemonade",
-  "night",
-  "coffee",
-  "winter",
-  "dim",
-  "nord",
-  "sunset",
 ] as const satisfies readonly ThemeName[];
 
 /**
@@ -55,8 +24,6 @@ export const DAISY_UI_THEMES = [
 export const CUSTOM_THEMES: readonly CustomThemeDefinition[] = [
   lightTheme,
   darkTheme,
-  magentaTheme,
-  semiDarkTheme,
 ];
 
 /**
@@ -71,8 +38,8 @@ const createDaisyUITheme = (name: ThemeName): AppTheme => ({
   manifest: {
     ...lightTheme.manifest,
     id: name,
-    name: name.charAt(0).toUpperCase() + name.slice(1),
-    description: `Tema nativo de DaisyUI: ${name}.`,
+    name: `themes.native.${name}.name`,
+    description: `themes.native.${name}.description`,
     tags: ["daisyui", "native"],
     isDefault: false,
     isExperimental: false,
@@ -88,7 +55,7 @@ export const NATIVE_THEMES: readonly AppTheme[] =
   DAISY_UI_THEMES.map(createDaisyUITheme);
 
 /**
- * @description Define todos los temas disponibles para el proveedor.
+ * @description Define los temas claro, oscuro y corporativo disponibles.
  * @author Steveen Cues
  * @version 1.1.0
  */
